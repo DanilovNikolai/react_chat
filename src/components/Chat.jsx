@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Context } from "../index";
@@ -27,6 +27,10 @@ function Chat() {
     });
     setValue("");
   };
+
+  useEffect(() => {
+    console.log(messages);
+  }, []);
 
   if (loading) {
     return <Loader />;
@@ -86,6 +90,7 @@ function Chat() {
               <div style={{ color: "#000", fontFamily: "Segoe UI" }}>
                 {message.text}
               </div>
+              <div>{new Date(message.createdAt?.seconds).toLocaleString()}</div>
             </div>
           ))}
         </div>
