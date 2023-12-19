@@ -3,15 +3,15 @@ import Login from "./components/Login";
 import Chat from "./components/Chat";
 
 export const publicRoutes = [
-   {
-      path: LOGIN_ROUTE,
-      Element: <Login/>
-   },
-]
+  {
+    path: LOGIN_ROUTE,
+    Element: <Login />,
+  },
+];
 
 export const privateRoutes = [
-   {
-      path: CHAT_ROUTE,
-      Element: <Chat/>
-   },
-]
+  {
+    path: CHAT_ROUTE,
+    Element: <Chat />,
+  },
+];

@@ -1,9 +1,9 @@
-import React, { createContext } from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import React, { createContext } from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 // Initialize Firebase
 const app = firebase.initializeApp({
@@ -13,16 +13,16 @@ const app = firebase.initializeApp({
   storageBucket: "chat-react-be39d.appspot.com",
   messagingSenderId: "135501839306",
   appId: "1:135501839306:web:aa40668e858fb9b089ad33",
-  measurementId: "G-C53B4GRZRM"
+  measurementId: "G-C53B4GRZRM",
 });
 
-export const Context = createContext();
+export const Context = createContext(null);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Context.Provider value={{app, auth, firestore}}>
+  <Context.Provider value={{ app, auth, firestore }}>
     <App />
   </Context.Provider>
 );

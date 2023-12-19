@@ -1,26 +1,31 @@
-import './App.css';
-import { BrowserRouter } from "react-router-dom";
-import Navbar from './components/Navbar';
-import AppRouter from './components/AppRouter';
+import { useContext } from "react";
+// styles
+import "./App.css";
+// react-router-dom
+import { HashRouter } from "react-router-dom";
+// components
+import Navbar from "./components/Navbar";
+import AppRouter from "./components/AppRouter";
+import Loader from "./components/Loader";
+// react-firebase-hooks
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Context } from './index';
-import { useContext } from 'react';
-import Loader from './components/Loader';
+// context
+import { Context } from "./index";
 
 function App() {
-  const {auth} = useContext(Context);
+  const { auth } = useContext(Context);
   const [user, loading, error] = useAuthState(auth);
 
   if (loading) {
-    return <Loader/>
+    return <Loader />;
   }
 
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <Navbar/>
-      <AppRouter/>
-    </BrowserRouter>
-    );
+    <HashRouter>
+      <Navbar />
+      <AppRouter />
+    </HashRouter>
+  );
 }
 
 export default App;

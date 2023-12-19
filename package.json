@@ -1,8 +1,8 @@
 {
-  "name": "project_2",
+  "name": "realtime_chat",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://danilovnikolai.github.io/react_project_2",
+  "homepage": "https://danilovnikolai.github.io/realtime_chat",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.0.0"
+    "gh-pages": "^6.0.0",
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11"
   }
 }
