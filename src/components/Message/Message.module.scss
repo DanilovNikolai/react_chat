@@ -1,0 +1,122 @@
+// Message.module.scss
+.messageContainer {
+  flex-grow: 1;
+  max-width: 70%;
+  display: flex;
+  margin-bottom: 10px;
+  @media (max-width: 500px) {
+    max-width: 100%;
+  }
+}
+
+.messageWrapper {
+  display: flex;
+  max-width: 100%;
+  align-items: flex-end; /* Выравниваем элементы вниз */
+
+  .avatar {
+    margin-right: 10px;
+
+    img {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    width: 100%;
+    @media (max-width: 700px) {
+      max-width: 300px;
+    }
+
+    .username {
+      color: #777;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .messageText {
+      font-size: 14px;
+      margin-bottom: 5px;
+      padding: 10px;
+      border-radius: 10px;
+      position: relative;
+
+      &::before,
+      &::after {
+        bottom: -0.4rem;
+        content: "";
+        height: 1rem;
+        position: absolute;
+      }
+    }
+
+    &.fromMe .messageText {
+      margin-right: 10px;
+      background-color: #d0f8a5; /* Цвет фона для сообщений от вас */
+
+      &::before {
+        border-bottom-left-radius: 0.8rem 0.7rem;
+        border-right: 1rem solid #d0f8a5;
+        right: -0.5rem;
+        transform: translate(0, -0.1rem);
+      }
+
+      &::after {
+        background-color: #fcfcfbf6;
+        border-bottom-left-radius: 0.5rem;
+        right: -40px;
+        transform: translate(-30px, -2px);
+        width: 10px;
+      }
+    }
+
+    &.fromThem .messageText {
+      background-color: #baf4f9; /* Цвет фона для сообщений от других */
+
+      &::before {
+        border-bottom-right-radius: 0.8rem 0.7rem;
+        border-left: 1rem solid #baf4f9;
+        left: -0.35rem;
+        transform: translate(0, -0.1rem);
+      }
+
+      &::after {
+        background-color: #fff;
+        border-bottom-right-radius: 0.5rem;
+        left: 20px;
+        transform: translate(-30px, -2px);
+        width: 10px;
+      }
+    }
+
+    &.fromMe {
+      .time {
+        font-size: 10px;
+        color: #777;
+        align-self: flex-start;
+      }
+    }
+
+    &.fromThem {
+      .time {
+        font-size: 10px;
+        color: #777;
+        align-self: flex-end;
+      }
+    }
+  }
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+.toEnd {
+  align-self: flex-end;
+}

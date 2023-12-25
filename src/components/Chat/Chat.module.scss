@@ -1,0 +1,78 @@
+// Chat.module.scss
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  max-width: 70%; /* Укажите максимальную ширину, которая вам нужна */
+  margin: 20px auto;
+
+  @media (max-width: 500px) {
+    margin: 0px auto;
+    max-width: 100%;
+    height: 100vh;
+  }
+
+  .messagesContainer {
+    display: flex;
+    flex-direction: column;
+    // flex-grow: 1; /* Занимает всю доступную высоту */
+    overflow-y: auto; /* Включаем скролл, если сообщений много */
+    margin-bottom: 20px; /* Отступ снизу */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-image: url("../../assets/images/bg90.png"); /* Цвет фона контейнера чата */
+    background-size: contain; /* Растягиваем фон на всю область */
+    background-repeat: repeat;
+    background-position: center;
+
+    @media (max-width: 500px) {
+      flex-grow: 1 0 100%;
+      padding: 10px 0px 10px 10px;
+      border: none;
+      margin-bottom: 0px;
+      margin-top: 50px;
+    }
+  }
+
+  .inputContainer {
+    display: flex;
+    align-items: center;
+    @media (max-width: 500px) {
+      border-top: 1px solid #e7e7e7;
+    }
+
+    .inputMessage {
+      flex-grow: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 40px;
+
+      @media (max-width: 500px) {
+        margin-right: 0px;
+        font-size: 16px;
+        border-radius: 0px;
+        border: none;
+      }
+    }
+
+    .inputButton {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #248bf5; /* Цвет кнопки отправки сообщения */
+      color: #fff; /* Цвет текста на кнопке */
+      cursor: pointer;
+      transition: background-color 0.3s ease; /* Плавное изменение цвета при наведении */
+
+      &:hover {
+        background-color: #1c6ebc; /* Цвет кнопки при наведении курсора */
+      }
+
+      @media (max-width: 500px) {
+        padding: 5px;
+      }
+    }
+  }
+}
