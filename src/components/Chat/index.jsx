@@ -1,14 +1,19 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
+// context
+import { Context } from "../../index";
+// firebase
+import firebase from "firebase/compat/app";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { Context } from "../../index";
-import firebase from "firebase/compat/app";
+// components
 import Loader from "../Loader";
 import Message from "../Message";
 // styles
 import styles from "./Chat.module.scss";
 // icons
 import sendIcon from "../../assets/icons/send_message.svg";
+// utils
+import formatTimestamp from "../../utils/formatTimestamp";
 
 function Chat() {
   const { auth, firestore } = useContext(Context);
@@ -18,6 +23,14 @@ function Chat() {
     firestore.collection("messages").orderBy("createdAt")
   );
   const messagesEndRef = useRef(null);
+  const [quotedMessage, setQuotedMessage] = useState(null);
+
+  const handleLongPress = (messageText) => {
+    // Код для обработки долгого нажатия
+    // Копирование сообщения в localStorage
+    localStorage.setItem("copiedMessage", messageText);
+    setQuotedMessage(messageText);
+  };
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -31,12 +44,10 @@ function Chat() {
 
   const sendMessage = async () => {
     if (!value.trim()) {
-      // Проверка на пустое сообщение
       return;
     }
 
     if (value.length > 200) {
-      // Проверка на максимальное количество символов
       alert("Максимальная длина сообщения - 200 символов");
       return;
     }
@@ -49,6 +60,7 @@ function Chat() {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setValue("");
+    setQuotedMessage(null);
   };
 
   if (loading) {
@@ -58,8 +70,23 @@ function Chat() {
   return (
     <div className={styles.container}>
       <div className={styles.messagesContainer}>
-        {messages?.map((message) => (
-          <Message message={message} user={user} key={message.createdAt} />
+        {messages?.map((message, index) => (
+          <React.Fragment key={message.createdAt}>
+            {(index === 0 ||
+              (index > 0 &&
+                formatTimestamp(message.createdAt).date !==
+                  formatTimestamp(messages[index - 1].createdAt).date)) && (
+              <div className={styles.dateDivider}>
+                {formatTimestamp(message.createdAt).date}
+              </div>
+            )}
+            <Message
+              message={message}
+              user={user}
+              time={formatTimestamp(message.createdAt).time}
+              onLongPress={() => handleLongPress(message.text)}
+            />
+          </React.Fragment>
         ))}
         <div ref={messagesEndRef} />
       </div>
@@ -68,6 +95,7 @@ function Chat() {
           className={styles.inputMessage}
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          placeholder={quotedMessage ? `Replying to: ${quotedMessage}` : ""}
         />
         {window.innerWidth <= 500 ? (
           <img

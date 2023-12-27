@@ -6,7 +6,10 @@ const formatTimestamp = (timestamp) => {
   const hours = date?.getHours().toString().padStart(2, "0"); // Часы
   const minutes = date?.getMinutes().toString().padStart(2, "0"); // Минуты
 
-  return `${day}.${month}.${year}, ${hours}:${minutes}`;
+  return {
+    date: `${day}.${month}.${year}`,
+    time: `${hours}:${minutes}`,
+  };
 };
 
 export default formatTimestamp;
