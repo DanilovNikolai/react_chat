@@ -108,10 +108,11 @@ function Chat() {
         </div>
       )}
       <div className={styles.inputContainer}>
-        <input
+        <textarea
           className={styles.inputMessage}
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          contenteditable
         />
         <img
           src={sendIcon}
