@@ -18,27 +18,29 @@ function Navbar() {
   console.log(user);
 
   return (
-    <nav className={styles.container}>
-      <p className={styles.title}>Real-time Chat</p>
-      {user && (
-        <>
-          <div className={styles.user}>
-            <div className={styles.avatar}>
-              <img alt="user_avatar" src={user.photoURL} />
+    <div className={styles.container}>
+      <nav className={styles.navbar}>
+        <p className={styles.title}>Real-time Chat</p>
+        {user && (
+          <>
+            <div className={styles.user}>
+              <div className={styles.avatar}>
+                <img alt="user_avatar" src={user.photoURL} />
+              </div>
+              <div className={styles.username}>{user.displayName}</div>
             </div>
-            <div className={styles.username}>{user.displayName}</div>
-          </div>
-          <Button
-            className={styles.button}
-            onClick={() => auth.signOut()}
-            style={{ textDecoration: "none" }}
-            variant="outlined"
-          >
-            Logout
-          </Button>
-        </>
-      )}
-    </nav>
+            <Button
+              className={styles.button}
+              onClick={() => auth.signOut()}
+              style={{ textDecoration: "none" }}
+              variant="outlined"
+            >
+              Logout
+            </Button>
+          </>
+        )}
+      </nav>
+    </div>
   );
 }
 

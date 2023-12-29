@@ -1,11 +1,30 @@
 import React, { useState } from "react";
+// styles
 import styles from "./Message.module.scss";
+// custom_hooks
+import useLongPress from "../../hooks/useLongPress";
 
-const Message = ({ message, user, time }) => {
+const Message = ({ message, user, time, onLongPress }) => {
   const [isVisibleName, setVisibleName] = useState(false);
 
   const isFromMe = user.uid === message.uid;
   const alignClass = isFromMe ? styles.fromMe : styles.fromThem;
+
+  const handleLongPress = () => {
+    console.log("longPress is triggered");
+    onLongPress(message);
+  };
+
+  const onClick = () => {
+    console.log("click is triggered");
+  };
+
+  const defaultOptions = {
+    shouldPreventDefault: true,
+    delay: 800,
+  };
+
+  const longPressEvent = useLongPress(handleLongPress, onClick, defaultOptions);
 
   return (
     <>
@@ -22,6 +41,7 @@ const Message = ({ message, user, time }) => {
               ? `${styles.messageWrapper} ${styles.reverse}`
               : styles.messageWrapper
           }
+          {...longPressEvent}
         >
           <div
             className={styles.avatar}

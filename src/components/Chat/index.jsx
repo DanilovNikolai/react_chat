@@ -12,6 +12,8 @@ import Message from "../Message";
 import styles from "./Chat.module.scss";
 // icons
 import sendIcon from "../../assets/icons/send_message.svg";
+import fromIcon from "../../assets/icons/from_message.svg";
+import deleteIcon from "../../assets/icons/delete_quoted_message.svg";
 // utils
 import formatTimestamp from "../../utils/formatTimestamp";
 
@@ -23,13 +25,11 @@ function Chat() {
     firestore.collection("messages").orderBy("createdAt")
   );
   const messagesEndRef = useRef(null);
-  const [quotedMessage, setQuotedMessage] = useState(null);
+  const [selectedMessage, setSelectedMessage] = useState(null);
 
-  const handleLongPress = (messageText) => {
-    // Код для обработки долгого нажатия
-    // Копирование сообщения в localStorage
-    localStorage.setItem("copiedMessage", messageText);
-    setQuotedMessage(messageText);
+  const handleLongPress = (message) => {
+    setSelectedMessage(message);
+    console.log(selectedMessage);
   };
 
   const scrollToBottom = () => {
@@ -60,7 +60,6 @@ function Chat() {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setValue("");
-    setQuotedMessage(null);
   };
 
   if (loading) {
@@ -84,31 +83,42 @@ function Chat() {
               message={message}
               user={user}
               time={formatTimestamp(message.createdAt).time}
-              onLongPress={() => handleLongPress(message.text)}
+              onLongPress={handleLongPress}
             />
           </React.Fragment>
         ))}
         <div ref={messagesEndRef} />
       </div>
+      {selectedMessage && (
+        <div className={styles.selectedMessageContainer}>
+          <p className={styles.selectedMessageText}>
+            <div>
+              <img src={fromIcon} alt="" />
+            </div>
+            От <span>{selectedMessage.displayName}</span>:{" "}
+            {window.innerWidth < 500 && selectedMessage.text.length > 30
+              ? `${selectedMessage.text.slice(0, 30)}...`
+              : `${selectedMessage.text.slice(0, 70)}...`}
+          </p>
+          <img
+            src={deleteIcon}
+            alt=""
+            onClick={() => setSelectedMessage(null)}
+          />
+        </div>
+      )}
       <div className={styles.inputContainer}>
         <input
           className={styles.inputMessage}
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          placeholder={quotedMessage ? `Replying to: ${quotedMessage}` : ""}
         />
-        {window.innerWidth <= 500 ? (
-          <img
-            src={sendIcon}
-            alt="icon"
-            style={{ width: "30px", paddingRight: "10px" }}
-            onClick={sendMessage}
-          />
-        ) : (
-          <button className={styles.inputButton} onClick={sendMessage}>
-            Отправить
-          </button>
-        )}
+        <img
+          src={sendIcon}
+          alt="icon"
+          onClick={sendMessage}
+          className={styles.sendButton}
+        />
       </div>
     </div>
   );
