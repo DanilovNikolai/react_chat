@@ -17,10 +17,22 @@
   .avatar {
     margin-right: 10px;
 
+    &.fromThem {
+      img {
+        border: 2px solid #baf4f9;
+      }
+    }
+
+    &.selected {
+      img {
+        border: none;
+      }
+    }
+
     img {
       width: 30px;
       height: 30px;
-      border: 1px solid #ccc;
+      border: 2px solid #d0f8a5;
       border-radius: 50%;
     }
   }
@@ -32,6 +44,10 @@
     width: 100%;
     @media (max-width: 700px) {
       max-width: 300px;
+    }
+
+    &.selected {
+      opacity: 0.5;
     }
 
     .username {
@@ -54,11 +70,22 @@
         height: 1rem;
         position: absolute;
       }
+
+      .quotedText {
+        background-color: #e0f7cb;
+        border-left: 3px solid green;
+        padding: 0px 5px;
+        margin-bottom: 5px;
+      }
+
+      .quotedName {
+        margin-bottom: 3px;
+      }
     }
 
     &.fromMe .messageText {
       margin-right: 10px;
-      background-color: #d0f8a5; /* Цвет фона для сообщений от вас */
+      background-color: #d0f8a5; /* Цвет фона для сообщений от меня */
 
       &::before {
         border-bottom-left-radius: 0.8rem 0.7rem;

@@ -28,8 +28,7 @@ function Chat() {
   const [selectedMessage, setSelectedMessage] = useState(null);
 
   const handleLongPress = (message) => {
-    setSelectedMessage(message);
-    console.log(selectedMessage);
+    setSelectedMessage(message); // Создаем копию сообщения
   };
 
   const scrollToBottom = () => {
@@ -57,9 +56,12 @@ function Chat() {
       displayName: user.displayName,
       photoURL: user.photoURL,
       text: value,
+      quotedText: selectedMessage.text || null,
+      quotedName: selectedMessage.displayName || null,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setValue("");
+    setSelectedMessage(null);
   };
 
   if (loading) {
@@ -84,6 +86,7 @@ function Chat() {
               user={user}
               time={formatTimestamp(message.createdAt).time}
               onLongPress={handleLongPress}
+              isSelected={selectedMessage === message}
             />
           </React.Fragment>
         ))}
@@ -91,7 +94,7 @@ function Chat() {
       </div>
       {selectedMessage && (
         <div className={styles.selectedMessageContainer}>
-          <p className={styles.selectedMessageText}>
+          <div className={styles.selectedMessageText}>
             <div>
               <img src={fromIcon} alt="" />
             </div>
@@ -99,7 +102,7 @@ function Chat() {
             {window.innerWidth < 500 && selectedMessage.text.length > 30
               ? `${selectedMessage.text.slice(0, 30)}...`
               : `${selectedMessage.text.slice(0, 70)}...`}
-          </p>
+          </div>
           <img
             src={deleteIcon}
             alt=""
@@ -112,7 +115,6 @@ function Chat() {
           className={styles.inputMessage}
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          contenteditable
         />
         <img
           src={sendIcon}

@@ -3,15 +3,17 @@ import React, { useState } from "react";
 import styles from "./Message.module.scss";
 // custom_hooks
 import useLongPress from "../../hooks/useLongPress";
+// icons
+import selectedMessageIcon from "../../assets/icons/checked_message.svg";
 
-const Message = ({ message, user, time, onLongPress }) => {
+const Message = ({ message, user, time, onLongPress, isSelected }) => {
   const [isVisibleName, setVisibleName] = useState(false);
 
   const isFromMe = user.uid === message.uid;
   const alignClass = isFromMe ? styles.fromMe : styles.fromThem;
+  const selected = isSelected ? styles.selected : null;
 
   const handleLongPress = () => {
-    console.log("longPress is triggered");
     onLongPress(message);
   };
 
@@ -44,16 +46,35 @@ const Message = ({ message, user, time, onLongPress }) => {
           {...longPressEvent}
         >
           <div
-            className={styles.avatar}
+            className={
+              isFromMe
+                ? `${styles.avatar} ${selected}`
+                : `${styles.avatar} ${styles.fromThem} ${selected}`
+            }
             onClick={() => setVisibleName(!isVisibleName)}
           >
-            <img src={message.photoURL} alt="avatar" />
+            <img
+              src={selected ? selectedMessageIcon : message.photoURL}
+              alt="avatar"
+            />
           </div>
-          <div className={`${styles.content} ${alignClass}`}>
+          <div className={`${styles.content} ${alignClass} ${selected}`}>
             {isVisibleName && (
               <div className={styles.username}>{message.displayName}</div>
             )}
-            <div className={styles.messageText}>{message.text}</div>
+            {message.quotedText ? (
+              <>
+                <div className={styles.messageText}>
+                  <div className={styles.quotedName}>
+                    от {message.quotedName}
+                  </div>
+                  <div className={styles.quotedText}>{message.quotedText}</div>
+                  {message.text}
+                </div>
+              </>
+            ) : (
+              <div className={styles.messageText}>{message.text}</div>
+            )}
             <div className={styles.time}>{time}</div>
           </div>
         </div>
