@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/realtime_chat/static/css/main.08bf4683.css",
-    "main.js": "/realtime_chat/static/js/main.fe32e058.js",
+    "main.js": "/realtime_chat/static/js/main.a24dda06.js",
     "static/media/bg90.png": "/realtime_chat/static/media/bg90.2f6a12adab2e2b6e3884.png",
     "static/media/checked_message.svg": "/realtime_chat/static/media/checked_message.b8e71ddfc8ad108d992e8d24d685253e.svg",
     "static/media/from_message.svg": "/realtime_chat/static/media/from_message.c4e798867e80d27ab69f4949714faef2.svg",
@@ -9,10 +9,10 @@
     "static/media/send_message.svg": "/realtime_chat/static/media/send_message.19cb374b3eba6f7dfbedec050d0b7bb7.svg",
     "static/media/delete_quoted_message.svg": "/realtime_chat/static/media/delete_quoted_message.0ca691033c852d87ee119a96e6ec4f9b.svg",
     "main.08bf4683.css.map": "/realtime_chat/static/css/main.08bf4683.css.map",
-    "main.fe32e058.js.map": "/realtime_chat/static/js/main.fe32e058.js.map"
+    "main.a24dda06.js.map": "/realtime_chat/static/js/main.a24dda06.js.map"
   },
   "entrypoints": [
     "static/css/main.08bf4683.css",
-    "static/js/main.fe32e058.js"
+    "static/js/main.a24dda06.js"
   ]
 }
