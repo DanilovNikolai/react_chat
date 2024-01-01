@@ -56,8 +56,8 @@ function Chat() {
       displayName: user.displayName,
       photoURL: user.photoURL,
       text: value,
-      quotedText: selectedMessage.text || null,
-      quotedName: selectedMessage.displayName || null,
+      quotedText: selectedMessage?.text || null,
+      quotedName: selectedMessage?.displayName || null,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setValue("");

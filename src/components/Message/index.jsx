@@ -62,7 +62,7 @@ const Message = ({ message, user, time, onLongPress, isSelected }) => {
             {isVisibleName && (
               <div className={styles.username}>{message.displayName}</div>
             )}
-            {message.quotedText ? (
+            {message.quotedText !== null ? (
               <>
                 <div className={styles.messageText}>
                   <div className={styles.quotedName}>
