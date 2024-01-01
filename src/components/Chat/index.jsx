@@ -51,7 +51,7 @@ function Chat() {
       return;
     }
 
-    firestore.collection("messages").add({
+    await firestore.collection("messages").add({
       uid: user.uid,
       displayName: user.displayName,
       photoURL: user.photoURL,
