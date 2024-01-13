@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# **Realtime Chat App**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a web application where users can communicate with each other.
 
-## Available Scripts
+# **App description:**
 
-In the project directory, you can run:
+The application consists of two pages with the login and chat page.
+Login is performed by using the **_firebase authentication_** service via a google account.
+The authorization status is saved in localStorage.
+The authorized user gets to the chat page.
+Your own messages are displayed on the right in the chat window, and from other people - on the left.
+The time when it was sent is displayed under each message.
+If the message is sent for the first time in a day, the current date is displayed in front of it.
+When the page is refreshed, the chat will scroll down to the last message;
+The chat data is stored in the **_firestore database_**.
+The user's google avatar is located to the side of the message.
+By clicking on the avatar, you can see the google nickname of the interlocutor.
+At the moment, you can write text and reply to selected messages in the chat.
 
-### `npm start`
+# **The following basic skills have been worked out:**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Using the useState, useEffect, useRef and useContext hooks;
+2. Using onClick events on elements;
+3. Import icons, libraries, hooks and components;
+4. Using conditional rendering with the ternary operator;
+5. Working with props and context;
+6. Using Firebase auth and Firestore database;
+7. Using a page routing;
+8. Making adaptations for different screens;
+9. Using a content loader;
+10. Creating and using a custom hooks;

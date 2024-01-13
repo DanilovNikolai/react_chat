@@ -1,8 +1,8 @@
 {
-  "name": "realtime_chat",
+  "name": "react_chat",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://danilovnikolai.github.io/realtime_chat",
+  "homepage": "https://danilovnikolai.github.io/react_chat",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",

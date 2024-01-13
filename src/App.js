@@ -1,6 +1,6 @@
 import { useContext } from "react";
 // styles
-import "./App.css";
+import "./App.scss";
 // react-router-dom
 import { HashRouter } from "react-router-dom";
 // components
